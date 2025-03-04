@@ -3,8 +3,11 @@
 let buttonNumber = document.querySelectorAll("#number")
 let buttonSymbol = document.querySelectorAll("#symbol")
 let buttonResult = document.getElementById("equalValue")
+let buttonClear = document.getElementById("clear")
 let result = document.getElementById("result")
 let output = "";  //maybe useful for something
+let temp = [];
+
 
 
 
@@ -41,12 +44,8 @@ function division(...inputNumber){
     return devide;
 }
 
-//need to make a fucntion to show on screen
 
 
-console.log(buttonSymbol)
-///////////////////////////
-//make the button do something when click except the '=' button
 buttonNumber.forEach(button =>{
     button.addEventListener("click",function(){
         result.innerText += button.innerText
@@ -56,25 +55,44 @@ buttonNumber.forEach(button =>{
 
 buttonSymbol.forEach(button =>{
     button.addEventListener("click",function(){
-        result.innerText += button.innerText;
+        temp.push(result.innerText)
+        result.innerText = "";
+                
     })
 })
-///////////////
 
 
 
 
 
-//trying to make the equal button take all the string in the result 
-
-buttonResult.addEventListener("click",seperateNumber)
 
 
 
-function seperateNumber(){
-    console.log(result.innerText);
-    
+buttonResult.addEventListener("click",resultCal)
+
+
+function resultCal(){
+    temp.push(result.innerText)
+     console.log(temp);
+     
+          
 }
+
+buttonClear.addEventListener("click",function(){
+    result.innerText = "";
+    output = "";
+    temp = [];
+})
+
+
+
+
+
+
+
+
+
+
 
 
 
