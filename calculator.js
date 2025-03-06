@@ -6,9 +6,9 @@ let buttonResult = document.getElementById("equalValue")
 let buttonClear = document.getElementById("clear")
 let answer = document.getElementById("answer")
 let result = document.getElementById("result")
-let output = 0;  //maybe useful for something
-let temp = [2,3];
-let ans = 0;
+let output;  
+let temp = [];
+let ans;
 
 
 
@@ -43,15 +43,12 @@ function multiplication(inputNumber){
     return multiply;
 }
 
-
-
-
 function division(inputNumber){
     let devide = inputNumber[0];    
     for(i=1;i<inputNumber.length;i++){
         devide /= inputNumber[i]
     }
-    return devide;
+    return parseFloat(devide).toFixed(2);
 }
 
 
@@ -66,7 +63,14 @@ buttonNumber.forEach(button =>{
 //when click the arithmetic symbol will choose which condition will happen when preess "="
 buttonSymbol.forEach(button =>{
     button.addEventListener("click",function(){
-        temp.push(Number(result.innerText))
+        if(result.innerText){
+            temp.push(Number(result.innerText))
+            
+        }else{
+            
+            console.log("no value");
+        }
+        answer.innerText=""
         console.log(temp);
         
         result.innerText = "";
@@ -95,7 +99,15 @@ buttonResult.addEventListener("click",resultCal)
 
 //function when push the button '=' will choose between the calculation fx
 function resultCal(){
-    temp.push(Number(result.innerText))
+    if(result.innerText){
+        temp.push(Number(result.innerText))
+        
+    }else{
+        
+        console.log("no value");
+    }
+    
+    
     
      if(output === 1){
         ans = addition(temp)                        
@@ -105,10 +117,13 @@ function resultCal(){
         ans = multiplication(temp)
      }else{
         ans = division(temp)
-     }
-     console.log(ans);
+     }     
+     
      result.innerText = "";
      answer.innerText = ans
+     temp = [ans]
+     console.log(temp);
+     
      
           
 }
@@ -116,12 +131,16 @@ function resultCal(){
 
 // function to clear the screen
 buttonClear.addEventListener("click",function(){
+    clear();
+})
+
+function clear(){
     result.innerText = "";
     output = "";
     temp = [];
     ans = 0;
     answer.innerText = "";
-})
+}
 
 
 

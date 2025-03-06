@@ -1,0 +1,19 @@
+
+body{
+    text-align: center;
+}
+
+.container{
+         
+    
+
+}
+
+button{
+    width: 50px;
+}
+
+
+.answer, .result{
+    display: inline-block;
+}
